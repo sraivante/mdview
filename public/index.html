@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MDVIEW</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-theme="light">
+
+<header id="topbar">
+  <div class="brand">MD<span>VIEW</span></div>
+  <div class="open-box">
+    <input id="pathInput" type="text" placeholder="Paste a .md file path and press Enter…" spellcheck="false">
+    <button id="openBtn" title="Open file">Open</button>
+    <button id="browseBtn" title="Open a file">📄</button>
+    <button id="folderBtn" title="Open a skill folder / skills root">📂</button>
+  </div>
+  <div class="actions">
+    <button id="addSectionBtn" title="Add a new section at the end">＋ Section</button>
+    <button id="insertBtn" title="Insert any markdown element">🧰 Tags</button>
+    <button id="saveBtn" title="Save file (Ctrl+S)" disabled>💾 Save</button>
+    <select id="fontSelect" title="Font">
+      <option value="">Aa Default</option>
+      <option value="Georgia, serif">Georgia</option>
+      <option value="Verdana, sans-serif">Verdana</option>
+      <option value="Arial, sans-serif">Arial</option>
+      <option value="Tahoma, sans-serif">Tahoma</option>
+      <option value="'Trebuchet MS', sans-serif">Trebuchet</option>
+      <option value="'Times New Roman', serif">Times</option>
+      <option value="'Comic Sans MS', cursive">Comic Sans</option>
+      <option value="Consolas, monospace">Consolas</option>
+    </select>
+    <select id="themeSelect" title="Theme">
+      <option value="light">☀ Light</option>
+      <option value="dark">🌙 Dark</option>
+      <option value="sepia">📜 Sepia</option>
+      <option value="nord">❄ Nord</option>
+      <option value="forest">🌿 Forest</option>
+    </select>
+  </div>
+</header>
+
+<div id="layout">
+  <aside id="sidebar">
+    <div class="side-block hidden" id="skillsBlock">
+      <h3>Skills</h3>
+      <ul id="skillsList" class="side-list"></ul>
+    </div>
+    <div class="side-block hidden" id="treeBlock">
+      <h3 id="treeTitle">Files</h3>
+      <div id="fileTree"></div>
+    </div>
+    <div class="side-block">
+      <h3>Outline</h3>
+      <ul id="outline" class="side-list"></ul>
+    </div>
+    <div class="side-block">
+      <h3>Recent</h3>
+      <ul id="recentList" class="side-list paths"></ul>
+    </div>
+    <div class="side-block">
+      <h3>Frequent</h3>
+      <ul id="frequentList" class="side-list paths"></ul>
+    </div>
+  </aside>
+
+  <main id="main">
+    <div id="fileBar" class="hidden">
+      <span id="fileName"></span>
+      <span id="dirtyDot" class="hidden" title="Unsaved changes">●</span>
+      <button id="infoBtn" title="About this file type">ℹ️ info</button>
+    </div>
+    <div id="sections"></div>
+    <div id="empty">
+      <div class="empty-art">📝</div>
+      <p>Open a Markdown file to begin.</p>
+      <p class="hint">Paste a path above, or pick one from Recent / Frequent, or hit 📂 to browse.</p>
+    </div>
+  </main>
+</div>
+
+<!-- folder browser modal -->
+<div id="browserModal" class="modal hidden">
+  <div class="modal-card">
+    <div class="modal-head">
+      <span id="browserDir" class="mono"></span>
+      <button id="browserClose">✕</button>
+    </div>
+    <ul id="browserList" class="browser-list"></ul>
+  </div>
+</div>
+
+<!-- file type info popup -->
+<div id="infoModal" class="modal hidden">
+  <div class="modal-card wide info">
+    <div class="modal-head">
+      <span id="infoModalTitle"><b>About this file</b></span>
+      <button id="infoModalClose">✕</button>
+    </div>
+    <div id="infoModalBody" class="info-body"></div>
+  </div>
+</div>
+
+<!-- big popup section editor -->
+<div id="editModal" class="modal hidden">
+  <div class="modal-card editor">
+    <div class="modal-head">
+      <span id="editModalTitle"><b>Edit section</b></span>
+      <button id="editModalClose">✕</button>
+    </div>
+    <div id="editModalBody"></div>
+  </div>
+</div>
+
+<!-- markdown tag palette -->
+<div id="insertModal" class="modal hidden">
+  <div class="modal-card wide">
+    <div class="modal-head">
+      <span><b>Insert Markdown element</b> — click to insert into the open editor, or into a new section</span>
+      <button id="insertClose">✕</button>
+    </div>
+    <div id="insertPanel" class="insert-panel"></div>
+  </div>
+</div>
+
+<div id="toast" class="hidden"></div>
+
+<script src="/vendor/marked.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

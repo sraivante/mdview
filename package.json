@@ -1,0 +1,19 @@
+{
+  "name": "mdview",
+  "version": "1.0.0",
+  "description": "Local section-wise Markdown viewer & editor with an Agent Skill and Cursor Rule explorer",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sraivante/mdview.git"
+  },
+  "keywords": ["markdown", "viewer", "editor", "claude-skills", "cursor-rules", "mdc", "local"],
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "marked": "^12.0.2"
+  }
+}
